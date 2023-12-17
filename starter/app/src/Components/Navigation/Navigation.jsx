@@ -21,9 +21,9 @@ export default function Navigation() {
 }
 
 const Container = styled.div`
-  height: 10vh;
+  /* height: 10vh; */
   width: 80vw;
-  padding: 50px 0;
+  padding: 40px 0 10px;
   margin: auto;
   input {
     border: 1px solid red;
