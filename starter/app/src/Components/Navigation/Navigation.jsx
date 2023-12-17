@@ -1,11 +1,15 @@
 import styled from "styled-components";
-export default function Navigation() {
+export default function Navigation({ onChange }) {
   return (
     <>
       <Container>
         <div className="container-1">
           <img src="/images/Foody Zone.svg" alt="" />
-          <input type="search" placeholder="Seacrh Food..." />
+          <input
+            onChange={onChange}
+            type="search"
+            placeholder="Seacrh Food..."
+          />
         </div>
         <div className="container-2">
           <ul>

@@ -9,8 +9,10 @@ export default function SearchResult({ data, BASE_URL }) {
               <img src={BASE_URL + food.image} alt="" />
             </div>
             <div className="food-details">
-              <div className="food-name">{food.name}</div>
-              <div className="food-text">{food.text}</div>
+              <div>
+                <div className="food-name">{food.name}</div>
+                <div className="food-text">{food.text}</div>
+              </div>
               <div className="food-price">
                 <div>${food.price.toFixed(2)}</div>
               </div>
@@ -26,20 +28,22 @@ const FoodCard = styled.div`
   width: 340px;
   height: 167px;
   display: flex;
-  column-gap: 5px;
-  /* background-color: #dbdbe19c; */
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 10px;
   .image-container img {
     width: 100px;
   }
   .food-details {
     display: flex;
-    row-gap: 5px;
     flex-direction: column;
+    justify-content: space-between;
   }
   .food-name {
     font-weight: 600;
   }
   .food-text {
+    margin-top: 5px;
     font-size: 13px;
   }
   .food-price {
@@ -57,11 +61,11 @@ const FoodCard = styled.div`
 `;
 const FoodCards = styled.div`
   width: 80vw;
-  padding: 20px 0;
+  padding: 40px 0;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   column-gap: 20px;
   justify-content: center;
-  row-gap: 34px;
+  row-gap: 20px;
 `;
