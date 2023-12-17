@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import SearchResult from "../SearchResult/SearchResult";
 export default function Content() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -15,7 +16,7 @@ export default function Content() {
         setData(json);
         setLoading(false);
       } catch (error) {
-        setError("Unable to detch data");
+        setError("Unable to fetch data");
       }
     };
     fetchFoodData();
@@ -26,26 +27,18 @@ export default function Content() {
   return (
     <>
       <Container>
-        <div className="item-container">
-          <div className="image-container">
-            <img src="" alt="ahsdh" />
-          </div>
-          <div className="details-container"></div>
-        </div>
+        <SearchResult BASE_URL={BASE_URL} data={data}></SearchResult>
       </Container>
     </>
   );
 }
 const Container = styled.div`
   width: 100vw;
-  height: 76vh;
+  /* height: 76vh; */
   background-image: url("/images/bg.png");
   background-size: cover;
   background-repeat: no-repeat;
   padding: 40px 0 10px;
   .item-container {
-    width: 80vw;
-    padding: 20px 0;
-    margin: auto;
   }
 `;
