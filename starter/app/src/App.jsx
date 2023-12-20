@@ -9,7 +9,7 @@ const App = () => {
   const [error, setError] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
   const [searchedValue, setSearchedValue] = useState(null);
-  const [selectedBtn, setSelectedBtn] = useState("all");
+  // const [selectedBtn, setSelectedBtn] = useState("all");
 
   const BASE_URL = "http://localhost:9000";
   useEffect(() => {
@@ -42,7 +42,7 @@ const App = () => {
   const filterFoodOnClick = (category) => {
     if (category === "all") {
       setFilteredData(data);
-      setSelectedBtn("all");
+      // setSelectedBtn("all");
       return;
     }
     console.log(category);
@@ -50,7 +50,7 @@ const App = () => {
       food.type.toLowerCase().includes(category.toLowerCase())
     );
     setFilteredData(filter);
-    setSelectedBtn(category);
+    // setSelectedBtn(category);
   };
   console.log(data);
   if (error) return <div>{error}</div>;
