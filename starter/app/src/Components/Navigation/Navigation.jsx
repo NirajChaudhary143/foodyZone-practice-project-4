@@ -1,5 +1,23 @@
 import styled from "styled-components";
-export default function Navigation({ onChange }) {
+export default function Navigation({ onChange, onClick }) {
+  const menuArr = [
+    {
+      name: "All",
+      type: "all",
+    },
+    {
+      name: "Breakfast",
+      type: "breakfast",
+    },
+    {
+      name: "Lunch",
+      type: "lunch",
+    },
+    {
+      name: "Dinner",
+      type: "dinner",
+    },
+  ];
   return (
     <>
       <Container>
@@ -13,10 +31,11 @@ export default function Navigation({ onChange }) {
         </div>
         <div className="container-2">
           <ul>
-            <li>All</li>
-            <li>Breakfast</li>
-            <li>Launch</li>
-            <li>Dinner</li>
+            {menuArr.map((menu) => (
+              <li onClick={() => onClick(menu.type)} key={menu.name}>
+                {menu.name}
+              </li>
+            ))}
           </ul>
         </div>
       </Container>

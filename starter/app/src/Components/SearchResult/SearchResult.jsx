@@ -1,25 +1,31 @@
 import styled from "styled-components";
-export default function SearchResult({ data, BASE_URL }) {
+export default function SearchResult({ data, BASE_URL, searchedValue }) {
   return (
     <>
-      <FoodCards>
-        {data?.map((food) => (
-          <FoodCard key={food.name}>
-            <div className="image-container">
-              <img src={BASE_URL + food.image} alt="" />
-            </div>
-            <div className="food-details">
-              <div>
-                <div className="food-name">{food.name}</div>
-                <div className="food-text">{food.text}</div>
+      {data && data.length ? (
+        <FoodCards>
+          {data.map((food) => (
+            <FoodCard key={food.name}>
+              <div className="image-container">
+                <img src={BASE_URL + food.image} alt="" />
               </div>
-              <div className="food-price">
-                <div>${food.price.toFixed(2)}</div>
+              <div className="food-details">
+                <div>
+                  <div className="food-name">{food.name}</div>
+                  <div className="food-text">{food.text}</div>
+                </div>
+                <div className="food-price">
+                  <div>${food.price.toFixed(2)}</div>
+                </div>
               </div>
-            </div>
-          </FoodCard>
-        ))}
-      </FoodCards>
+            </FoodCard>
+          ))}
+        </FoodCards>
+      ) : (
+        <FoodCards>
+          <div>{searchedValue} food not available.</div>
+        </FoodCards>
+      )}
     </>
   );
 }
@@ -61,6 +67,7 @@ const FoodCard = styled.div`
 `;
 const FoodCards = styled.div`
   width: 80vw;
+  min-height: 65vh;
   padding: 40px 0;
   margin: auto;
   display: flex;

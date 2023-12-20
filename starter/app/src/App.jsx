@@ -8,6 +8,8 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
+  const [searchedValue, setSearchedValue] = useState(null);
+  const [selectedBtn, setSelectedBtn] = useState("all");
 
   const BASE_URL = "http://localhost:9000";
   useEffect(() => {
@@ -27,23 +29,44 @@ const App = () => {
   }, []);
   const searchFood = (e) => {
     const searchValue = e.target.value;
+    setSearchedValue(searchValue);
     console.log(searchValue);
     if (searchValue === "") {
       setFilteredData(null);
     }
-    const filter = data.filter((food) =>
+    const filter = data?.filter((food) =>
       food.name.toLowerCase().includes(searchValue.toLowerCase())
     );
     setFilteredData(filter);
+  };
+  const filterFoodOnClick = (category) => {
+    if (category === "all") {
+      setFilteredData(data);
+      setSelectedBtn("all");
+      return;
+    }
+    console.log(category);
+    const filter = data?.filter((food) =>
+      food.type.toLowerCase().includes(category.toLowerCase())
+    );
+    setFilteredData(filter);
+    setSelectedBtn(category);
   };
   console.log(data);
   if (error) return <div>{error}</div>;
   if (loading) return <div>Loading Data....</div>;
   return (
     <>
-      <Navigation onChange={searchFood}></Navigation>
+      <Navigation
+        onClick={filterFoodOnClick}
+        onChange={searchFood}
+      ></Navigation>
       <Container>
-        <SearchResult BASE_URL={BASE_URL} data={filteredData}></SearchResult>
+        <SearchResult
+          BASE_URL={BASE_URL}
+          data={filteredData}
+          searchedValue={searchedValue}
+        ></SearchResult>
       </Container>
     </>
   );
@@ -57,4 +80,7 @@ const Container = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   padding: 40px 0;
+
+  @media screen {
+  }
 `;
